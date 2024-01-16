@@ -1,0 +1,175 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UserPanel.master.cs" Inherits="Smart_Hotel_Restaurant.UserPanel.UserPanel" %>
+
+<%@ Import Namespace="Smart_Hotel_Restaurant" %>
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Home and Restaurant Management System</title>
+    <link href="../DesignImages/Icon/LogoOFGOldbar.png" rel="icon" />
+    <!--This is For Applicable For Mobile Start-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--This is For Applicable For Mobile End-->
+
+    <link href="../fontawesome-free-6.2.1-web/css/all.css" rel="stylesheet" />
+    <link href="../Customize/CSS/UserPanelCSS.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="background-color: #dfe4ea87;">
+    <form id="form1" runat="server">
+        <div>
+
+            <%--This is for the user id--%>
+            <asp:HiddenField ID="hndUserID" runat="server" />
+            <%--This is for the user id--%>
+
+
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #353b48;">
+                <div class="container">
+                    <a class="navbar-brand text-white" href="HomeRoom.aspx">
+                        <img src="../DesignImages/Icon/LogoOFGOldbar.png" width="50" />
+                        <span class="pt-5" style="color: #fff; font-size: 20px; font-weight: bold;">Goldbar Tandag</span>
+                    </a>
+
+                    <div class="ml-auto pt-2 p-0 mr-0">
+                        <ul class="navbar mr-0 p-0" style="text-decoration: none; list-style: none;">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    <asp:Repeater ID="R_username" runat="server">
+                                        <ItemTemplate>
+                                            <asp:Label Text='<%# Eval("username") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                    <i class="fa-solid fa-user text-white"></i>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                  
+                                    <div>
+                                        <asp:LinkButton ID="LnkMyProfile" CssClass="nav-link text-dark pr-4 m-0" runat="server" OnClick="LnkMyProfile_Click">
+                                        <i class="fa-solid fa-user pl-2" style="color: #546de5;"></i> Profile
+                                        </asp:LinkButton>
+                                    </div>
+                                    <div>
+                                        <asp:LinkButton ID="LnkLogout" OnClick="LnkLogout_Click1" CssClass="nav-link text-dark pr-4 m-0" runat="server">
+                                        <i class="fa-solid fa-right-from-bracket pl-2" style="color: #e66767;"></i> Logout
+                                        </asp:LinkButton>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="pl-0 m-0" style="display: inline-block; height: 38px; width: 40px; position: relative; margin: 0 0 0 20px;">
+
+                        <a href="CartFoods.aspx">
+
+                            <i class="fa-solid fa-cart-shopping text-white" style="background-size: cover; width: 29px; height: 26px; left: 50%; top: 50%; margin: -12px 0 0 -14px; position: absolute;"></i>
+                            <span style="position: absolute; background: #f36e36; color: #fff; top: -4px; font-weight: 400; right: -4px; text-align: center; border: 3px solid #f36e36; font-size: 13px; min-width: 14px; line-height: 14px; border-radius: 50%;">
+
+                                <%--This is for that cart --%>
+                                <asp:Repeater ID="R_CountCartNo" runat="server">
+                                    <ItemTemplate>
+                                        <asp:Label CssClass="badge m-0" Style="font-size: 12px;" Text='<%# Eval("CartNumber") %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <%--This is for that cart --%>
+                            </span>
+                        </a>
+                    </div>
+                 
+                </div>
+            </nav>
+            <ul class="nav justify-content-center mt-3 mb-3 " style="color: black; font-size: 15px;">
+            </ul>
+          
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <div class="full-footer p-3" style="background-color: #353b48; border-top: 2px solid #d35400; color: white;">
+                <div class="container-fluid pt-2 pb-2 pr-5 pl-5">
+                    <div class="row mr-5 ml-5">
+                        <div>
+                            <span style="font-weight: bolder; color: white; font-size: 28px;">Goldbar Hotel & Restaurant in Tandag City</span>
+                        </div>
+                    </div>
+                    <hr style="border-color: white; border-width: 1px;" />
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div>
+                                <span style="font-weight: 400; font-size: 20px;"><b>Address</b></span>
+                            </div>
+                            <div>
+                                <ul class="nav-item" style="list-style: none;">
+                                    <li class="nav-item"><i class="fa-solid fa-map-location-dot pr-1"></i><small>Location Map: 36G2+H6F, Tandag, Surigao del Sur</small> </li>
+                                    <li class="nav-item"><i class="fa-solid fa-location-dot pr-1"></i><small>Location: Bag-ong Lungsod, Tandag city</small> </li>
+                                </ul>
+
+                            </div>
+
+                            <div class="col-8">
+                                <center>
+                                    <div class="embed-responsive embed-responsive-16by9">
+
+                                        <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.860838949814!2d126.1979667757963!3d9.076439988242937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33023718531e17cf%3A0x5ed1dd5c09b01da5!2sGoldbar%20Hotel%20%26%20Restaurant!5e0!3m2!1sen!2sph!4v1673665818172!5m2!1sen!2sph"
+                                            frameborder="0"></iframe>
+                                    </div>
+                                </center>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div>
+                                <span style="font-weight: 400; font-size: 20px;"><b>Contact</b></span>
+                                <ul class="nav-item" style="list-style: none;">
+                                    <li class="nav-item"><i class="fa-solid fa-tty pr-1"></i><small>Telephone No.: 086-211-3175</small> </li>
+                                    <li class="nav-item"><i class="fa-solid fa-phone pr-1"></i><small>Mobile No.: 0963 974 0080</small> </li>
+                                    <li class="nav-item"><i class="fa-solid fa-envelope pr-1"></i><small>Mail: goldbarhotelandrestaurant@gmail.com</small> </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-12">
+                            <span style="font-weight: 400; font-size: 20px;"><b>Opening Hours</b></span><br />
+                            <ul class="nav-item" style="list-style: none;">
+
+                                <li class="nav-item"><small>Saturday	8 AM–10 PM</small></li>
+                                <li class="nav-item"><small>Sunday	8 AM–10 PM</small></li>
+                                <li class="nav-item"><small>Monday	8 AM–10 PM</small></li>
+
+                                <li class="nav-item"><small>Tuesday	8 AM–10 PM</small></li>
+                                <li class="nav-item"><small>Wednesday	8 AM–10 PM</small></li>
+
+                                <li class="nav-item"><small>Thursday	8 AM–10 PM</small></li>
+                                <li class="nav-item"><small>Friday	8 AM–10 PM</small></li>
+
+                            </ul>
+                        </div>
+                        <div class="col-lg-1 col-md-6 col-sm-12">
+                            <span style="font-weight: 400; font-size: 20px;"><b>Our Services</b></span><br />
+
+
+                            <small>Dine-in</small><br />
+                            <small>Room Reservation</small>
+                            <small>Table Reservation</small>
+
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <span style="font-weight: 400; font-size: 20px;"><b>Follow Us : </b></span>
+                            <br />
+                            <a href="https://www.facebook.com/profile.php?id=203983499635757&paipv=0&eav=AfaUmH4GzuZoKjD8hZC88H_Cya4EJ4SnHnFJHuO06UaRq3K8HiksBbHvu4kn6hbIBo4&_rdr" target="_blank" class="text-white nav-link;"><i class="fa-brands fa-facebook pr-1"></i><small>Goldbar restaurant. Tandag, Surigao del Sur</small></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

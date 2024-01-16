@@ -1,0 +1,5 @@
+﻿#AttachmenFilesHover:hover {
+    transition: .3s ease-out;
+    transform: scale(1.2);
+    
+}

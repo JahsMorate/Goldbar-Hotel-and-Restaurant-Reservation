@@ -1,0 +1,26 @@
+﻿.loader {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    background-color: white;
+    transition: opacity 0.75s, visibility 1.75s;
+
+}
+
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader:after {
+    content: "";
+    width: 75px;
+    height: 75px;
+    animation: loading 0.75s;
+}
+

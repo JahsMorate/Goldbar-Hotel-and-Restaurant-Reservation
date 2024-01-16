@@ -1,0 +1,162 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMaster.master.cs" Inherits="Smart_Hotel_Restaurant.AdminPanel.AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+
+
+    <title>Admin Panel</title>
+    <link href="../DesignImages/Icon/LogoOFGOldbar.png" rel="icon" />
+    <!--This is For Applicable For Mobile Start-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--This is For Applicable For Mobile End-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="../fontawesome-free-6.2.1-web/css/all.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="assest/adminCSS.css" rel="stylesheet" />
+    <script src="../Customize/CSS/loading.js"></script>
+    <link href="../Customize/CSS/loader.css" rel="stylesheet" />
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="loader">
+                <img src="../DesignImages/loadingScreeen/preload.gif" />
+            </div>
+            <header class="header">
+                <div class="header__container">
+                    <img src="assets/img/perfil.jpg" alt="" class="header__img">
+
+                    <a href="#" class="header__logo">Admin</a>
+
+
+
+                    <div class="header__toggle">
+                        <i class='bx bx-menu' id="header-toggle"></i>
+                    </div>
+                </div>
+            </header>
+            <div class="nav" id="navbar">
+                <nav class="nav__container">
+                    <div>
+                        <a href="AdminHomePage.aspx" class="nav__link nav__logo">
+
+                            <span class="nav__logo-name">Gold Bar Tandag</span>
+                        </a>
+
+                        <span class="nav__logo-name">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-infinity" viewBox="0 0 16 16">
+                                <path d="M5.68 5.792 7.345 7.75 5.681 9.708a2.75 2.75 0 1 1 0-3.916ZM8 6.978 6.416 5.113l-.014-.015a3.75 3.75 0 1 0 0 5.304l.014-.015L8 8.522l1.584 1.865.014.015a3.75 3.75 0 1 0 0-5.304l-.014.015L8 6.978Zm.656.772 1.663-1.958a2.75 2.75 0 1 1 0 3.916L8.656 7.75Z" />
+                            </svg>
+                            <b><small>Overview</small></b>
+                        </span>
+                        <br />
+                        <br />
+                        <div class="nav__list">
+                            <div class="nav__items">
+
+                              <%--  <a href="AdminHomePage.aspx" class="nav__link">
+                                    <span style="width: 21px; height: 21px;">
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC9klEQVR4nO2Wz08TQRTHe/JgjP+FxhgvHtSjGmMCaGdbpAcVOGjAkzGCCDvbpgfFg5zUloRa0JsJRdSws1UQIdiiLUXAHzFIiAmWVgnyqxh+7G6fedugpVDcUiHG8Ek2u7N5+/3uzJt5MwbDFv8S+RVNu4xVLXfNgjfKWdk8oZJKKAO8YzvfJkUIz+ow7q8YnuSlY2arNIomxTfaZOejd/CiLwzD4Sk4dJTT7th2NA9AUXWbjHEYj9+ty9Bib9xhskn9hLJ4RW2nOhlbgFQOHjGueIdxVxydKuFFMAniAOpk0MunezhBihVeb1UcDR64dNW+wiCdMYLxzgYPnL3WpnCUxYj9+V5dpoQypczpU1RVhUVZhlOFF+BldxD00OUPgPl0CSwsLoIsq3DZ4VNQ7wTfsi+taWlpaDsnSDPlTr+SLBYI9UOwt1+XMcZhfDJld3wKJ7DZnIvSzlWNMac4vNjTbJGnpn4/y6o27CaBvV9liKXDOJEc9R5tmLJhdnAQQgUFMB+Nam3Uc95rAkJFMFIvt7y3VhbB2YsTI/9MCQR6+tZnOjQEIYsFJvx+rY06qIe65Y4OlRPY2C9TXPT4N0tLxveqR3dO1zJFUAf1ENTX1nmVdCAxzLTFXVzdKq+ri2uYrkZRdatspKIn0WObFMGKtNGmyO3mt2AS2GQiv4J3vvNNGDbaFGnvDQMRmKIZEyrGP0dmIBNGXC4I5uZCDyG6TRGs7Zhni6VxmwEfsOBjCUxXBlMJ5uXBGKUQyMnRFb+kjT7oZ7Kz3QbCs/jXiR+QCV/cbs18pL4+o+/C4zHNGKukgaNMDn78BptB94coGse1HJut3lHcTzeDWw+TZrWReh+U1HQs2xjSUVXjTnvp4fzNdtnIi88Ss7ry8X6OMvg+PffHypWpcXLlGp+e0/Kbyz85vqxW21xd8WxrdSrJtZrWdeH5bDxld2Imwovx2vtNWe9OqaAe6uJxiFRK51ZsjWar93Xi5LgxFyewT2lPIVv8l/wE6UP/YjQGpFcAAAAASUVORK5CYII=">
+                                    </span>
+
+
+                                    <span class="nav__name m-2">Dashboard</span>
+                                </a>--%>
+
+                                <a href="ChartStatus.aspx" class="nav__link">
+                                    <span style="width: 21px; height: 21px;">
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAX0lEQVR4nGNgGAUUgrg5Zf/xYQZaAZDhux7sxYrjRi0emUEdR6XUSJbFu6gQRKMW7xoN6iGVuOKIyHI0s3gXFdSggFGLd40GNcNo4to7mp3+D70CJI6IcpgaahhGJAAAaYGb5mjVNhAAAAAASUVORK5CYII=">
+                                    </span>
+
+
+                                    <span class="nav__name m-2">Chart</span>
+                                </a>
+
+                                <a href="OrdersStatus.aspx" class="nav__link">
+                                    <span style="width: 21px; height: 21px;">
+
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAACzUlEQVR4nMXWXU/TUBgH8GLkG0gw8U4v/AjeG4hRb70xurGuPWVoYtDB1lM6ysvc2BjthkaytVvbCGRk4MuEMEAMBDEhGqNwo6LAjRdGiZEwITB3TDGaoLLSDcY/eW76nJxfcp62ORh2kCGVhoBFcmYA70YACp8omo/iMFS273BV1LmuvuxDFoleu1LnPwqg0AVo4TnHcYf3FSYU6Ndwq0L7fj1BJRTkpwDNV2DFDkUL1wAUmooO477WRsLt3cRl+MYqw6RJdLRVifWUKVpXgUfp4xjCSvYHbm8+BRoDWflFHHVOxdDNkdsZxz1fuqabW9VeREvUuQYUZgGo7DghM0GTVG+7LDoqzeG6E1SYKs0b5jjuEGA7soNvU2h0afyfGpxPofjsfSTO9CBhQkLNw8F1e8LzjVLZVbPoQJaYM00o8B2pMENmyenbdlp6Ac3+7+Jk/L9wrhp6P4Licw+QNNOLhIkoahnu/GFPeNJAbVizxOiP+rDXO+/ui+hCv6O3LjgZRUBm4row4XUn7HeCmb2CHQO+dJVUf0kXxv3uWpsnsLkXcGrhMbLE6A2zcv2YLmwV2JPAFcjmwnbK3+t7Xw8gUmH05/tnzq5AdmDuUcEwPyEioDaou4db2lZujd4t+KjtCW/aHHFc2DVMedpmuZ6uguDUojZf58bF8I0ju4atXrdSG+IzhcDdr/oRqbJLmJEQ7a24zd2u+0nlqsCTiDbfsDFYhOXA1YFSi2N5ocMfxtDVnqa0KeI4gxkN6QpsAon9SirMcq6yKsxnqwy3lSVGr+AyVLR/v2GYgnw/6eRPY8UOgEKTdjEoOlwNg5UUFEaKDlNUuFS7/AGa9xMwWF5UHIehMkDz0tb1FwrIaGF7kRqGP1/Dhpa1qmaD54z28462oZJ8hpSH08jGdn4x2s872sZqchrJyac7wrn6WL7Rjk/bcKsY4azR/oHmJxgkIpr+Q1inAAAAAElFTkSuQmCC">
+                                    </span>
+
+                                    <span class="nav__name m-2">Food Order</span>
+                                </a>
+
+                                 <a href="RoomReservationList.aspx" class="nav__link">
+                                  <span style="width: 21px; height: 21px;">
+
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC7UlEQVR4nO2WTUwTQRTH68GLiSe9efHmyRM3YtLQ3Z0tC/2iFSQKkQjWVCAgZRMJCcEGJcWUmBCMJz3JTW9iYtBg6nY/WigU0FJIoymBgIoVaIsffWbWtLprGyyWg0lf8k82M/Peb+btmw+N5n8yTqc7Ier14yJNT/i02pMHDvSXlR3mKeq6D6GdZYcjvey4muYRncBtuO9AoD6SPCNQKDpdW7e76XJBcnhYVnxgAGbq63d5hGKvSJIoGtCv1R4XaHpMZJjkGstmYaGGRphraJS/cRvuExgmJSD0UCCIY/sGgkZziKOoSwJFxcPNLd+2h4Yg4fFAtLUVBIMRZh+MyRKMRoi2tsl9eEy4ueU7j9AWR5LNOEZBUG9FxSmepsWA2ZL60Ncnr2ijtxcCtrMwfY2FN8trEPkMssLRDZjuc0GgxgrrPT3y2I/9/TBVY90VEJrhSPL03mmtrj4iIDQgIDrxtq09La/C7YZwy2UQrVaYfzqZBao1P8GBVFsHC01NsDU4CEmPB2JdXSDo9Umeou56y8uP5oRyOp2BR2h97vyFLxnHFacTRKMJgrfvwOJ6Ii80o8X3KZi9dx9EgxHetbf/TL/bDQsXm77yCG1yBNGogAp6/TOp2pDE6cykKniuHgJ2B7yei+4JVAv7YF8cA8fK/CrJYEhhVhbsI4hscSzZ7SCazBB69AQi8XTB0KziaQg9HgfRbIYl+xU5NmZglgKMt4NkMkHwxk1YXInvH6hOf+wTBF23QDKZYZVl/wS/MNlg3jtVNKBaC0IInlvqlGBOp2PZkfwVWyyxI5OAWYoCc4568zrgWRaifHGco95fq/1bcOZs3kslcKSUarWViitS2k7DyoMC3zRYRTlAnCrlO7lWu7shYLOB32KBWGenYgK/g3PF1BRiGbAMrKraEWk6yBEEiZ+8Ik37xMrK7VhHh/xUUtw+/2o+ggA/w+yICAU4ktSq+3GbiJAkMcxWscEvcwFzTQCPLRr4IOwHKSFYXnQ/xFwAAAAASUVORK5CYII=">
+                                    </span>
+
+                                    <span class="nav__name m-2">Room Reservation</span>
+                                </a>
+                                <a href="AdminTableReservation.aspx" class="nav__link">
+                                    <span style="width: 21px; height: 21px;">
+
+                                       <img src="data:image/png;base64,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">
+                                    </span>
+                                    <span class="nav__name m-2">Table Reservation</span>
+                                </a>
+
+                                <a href="AdminRoomReservation.aspx" class="nav__link">
+                                    <span style="width: 21px; height: 21px;">
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAADNklEQVR4nO3VX0xSURwHcHropa2neuult556KmcPvYQ5/6FeIHNOl5sZJiYXwT9RmkmypaZrtiWUUy9wAfM/+Wdami6dps6wzOk0dfgvp/kv7jRNf+3cDZaIIIiuts72HXfn/M7vwz33DhiMf2mUxASc0YpCGsgEbnNxjM/ZQwcVvAvHlfGBEjUebOqvUGwaKhSbahyj1HigBK0dCkrwfS+TQvZY3eN408pIH8DyDJ3VsX5ofCKiSCE2Wcz39XIbSPJYpzUijlYrDqEm2l/T2NrUELTJH9JB12huol0PqIYUcjREHHbKZRAYjGPKO/43VYLg5S5lztrG3BhsL03DUKMGdEmh0KvLh15tPn2N5tAaqulS5qyrBdiqKp4VjXo4hapu+5zTiLkfqtKjTPMDHfQdLQ51Q62MDw1ZOCwN91iOemX0IzTlikEv5cGftXppjEkj4hqK4vzOOwQVPNYJNY7JSCGH+lJHbG0vTsHm/Dj0aJ9CaWIoDNYr6Tszo5YsTcPou3IoTQqFjiIZbMx9pedGmsu2NSIuReLsgsKooJM2UWWsb6AaD55rfiahzM9tsqsByiQR8P7lI1ibHt4NWuXn7Ch0q3PhVUoYjLaU03PrMyPQXphJkTi2WBLrd2MHqklgvymXhJtm+1osb2pTXiLUZNyCuf42h6B10B60tykvie6F5lBvZCDLAhN8f9hamKRjqFSALjEEPuuLYOu70WnUHLQX9dAlXgdDhdzSH1k74G+GVqhKj4LmfAn8GP/kMmgdyjgIrQUPoDI1EmZ63+6G1TgGxs56m5t/LRihVpEJ0kgvuHvN02bQWt2LTLrWVg9jZz1t7IBLYv2y0cRe3xo1zIr2BlUyB3T3Q2wGrWVHe9O1e/Uh+P6ArB0vmD1YGsm0i1rwFDZ95/ZghvWwB6OjdISag2oPDA+01kBq+BUQYx4gF7AconJBAIjZHpAWzoTBNr3rcFo4E4hkNhBJGCRzLzmEU7ielvq0CKbrsDDoIlRnhNFB145g63q3wcJ9xO1wtZP5D4OzR32QuPyMn9+7ClSfjP7c75+CvT2EM7A5zsB77SGc/cl0V4i/DiaOILvgox6/ASy9wEU6KNf9AAAAAElFTkSuQmCC">
+                                    </span>
+                                    <span class="nav__name m-2">Add Room</span>
+                                </a>
+                              
+                                <a href="AdminTable.aspx" class="nav__link">
+                                    <span style="width: 21px; height: 21px;">
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAZUlEQVR4nGNgGAWjYBRQC0yrcvk/EJgBRHw910pXPA1m8YD4GAZgPgfR11YVUBUjmw23cFBZ3JNlT1VMtMUMVAajFo8G9f8BT1zTaIC/jmankV2ATEOvsqho8TQamT0KRgEDOgAAse6nv1/oHYwAAAAASUVORK5CYII=">
+                                    </span>
+                                    <span class="nav__name m-2">Add Table</span>
+                                </a>
+
+                                <a href="Foods.aspx" class="nav__link">
+                                    <span style="width: 21px; height: 21px;">
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAADmElEQVR4nM3X21MbVQAGcJ76on3wb/Hy0AdfqBhIrBFrxbaYiiOUqMURk2yZYjJBUhnSZqbGwCYlrSW0KNS0VloSBSGX3YZARjut0Co4JZZbGioQslQqX+dsbQK2pOdQx/HMfDO7s5Pvl3N2z8xuXt7/Yex3Chc/coSwkRic4dCG0OpG3xMGXkz3TawgMAWm9E+swNAspLT2H55khz8PKw92XJpjRe+nvv2nhK4pVMQMc7zAuwO/r5CS4DQwu8QGt/TH/9Q1hezssEscP3c1JZcMJIC522zwuZEUOF74jQ11BJ/inMJi/98lPyaBGYnxPk8CBl5IkS5quO1tnUnMz8f9XLMewkS3P3POEk+Z3kgNd2qqgmOVWkg2272IEUjCxew5ZUYrK3FaU9VHDftKym5N6fXZkivDkHx+Zph0+N8oS1LDQfVry7fq6rIl8RuQOjqZYdLRr95xhxoOFxYh1diYLfljAZLbzQyTjnChEtSwUPAiFq3WbMlMEtKRI8ww6SBd1HBgW/GdWZOJGfpnSEfg5e3L1PBZzXuxa+UV7DO0HcbIp3r46jU4YXwJbQdU8Ly7c/yobstmKvhkufEZQVEkPxw0YNpmQ8zyAdwfK+G17kCsQ4vpUC1G/Xp8ay+RnAcKFluMhR4HV/D0I/HOt6o9kW1qzFssOdGFw1acNZego+FVXP/egMVY/QNJiiZETpX/dcxclGoxKX5prtm6N+cqnN6zzycqVZjU6daFu+p244JjFxYG6x6KrsnQJ/j1QjW++ez1NF/7QjrnKpx6x1DVW1xyO6IuxphWi0RtLeYsFvmJJXHUbH3s5OUannJun1fzfrR3+86lkEotbxMSv0sBzLZuOH6Xgn671RyN9LQP3UT7UCInPPB1KQa8peten7lycIUJ3u8ST7aKkzghTOaGvaWIet9c93pfq3rhO17xLDWsawofcgfi5C0jAyd+bkCg9RU55Hg1kI43yX+gx61E1KtBOt6cgbtdBc9RwxwvfnE8PIHjoRsZmIDTQQ5TQU4+Xg0TdKRrL+ajZoycr8isQvJqI/1SV9vDz+v5cNo3toTuUWkNPLUO3HNMJaNkS80PmtHrVtE9XMavLm/60B7I55xiG8eL6S9jCfklkORhS31zuOHBGZ+vuDfjrgpEz2joYINTHDa3xeZcvdeXe8aX17xb0Wwnck8JRmY+eGZP5h7jUXCuL4b/dB/nrRrkh4+bDcH/1rgLekbl31lYtHUAAAAASUVORK5CYII=">
+                                    </span>
+
+                                    <span class="nav__name m-2">Add Food</span>
+                                </a>
+
+<%--                                <a href="AdminUserList.aspx" class="nav__link">
+                                    <span style="width: 21px; height: 21px;">
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAADYUlEQVR4nNWV22sTURCH8+ab/4K+qCCILz7rg1iz2SQbEEURqYKgbZqmja1JtK0iXuqD1kvSNNm4zWZzkRIrXoLRXJtLt1IVa5VqrGjVTcVbo2kXay4jJ1BsqzHqpoIDPzicmTPfmTMDRyT6H4xWYmtc9YTDVS9PMUr8q0Ml++xWE35mj3jlggDPqsSLnGqCudiomHxIagtpbwdkI2b4EuyEkW59Hl3AtheXMyrx4oqCXWr5tcDRXXy2rwsgbv1Bo0xb4WrL1kmmTsozSlxdEWj3XmzTZe2WqVzU8lPobH26cQZ6NAqeVuIbBYPdDcTtMfeRstAZPXceBncD0S8YzChxfjpkKgkqxKyozzBqbwWIkcW+O1SyKcFguxLPzn9mdJG09zQ8sbXA9bbt4D22A3zt1RBq3w1oDmilJCcY7FTJJviAAcY9J8B3pBqcajm4NQq4cmgbxLpq4GWiHQofGCi8t8PNkzvhjkENjnpZWjDY3UA8GjI1Qc/+TfAiehymUxcAPjI/1bvhM8DUSVGPRwSDXfUEba+VFKGlgDPKvaWBrpWAWy1nBIN7j2IJlGyaK13pbKHY3mNYQjD4hhGbRsl+BzoD9hmxL4LBQQoP+UkMCu/pslAUg2IDFB4QXrFp49IAhecnxwxlwZkXBghSeD5olSwRDEYWpGSeZ/37s+XAKCbULe0RVcp8F6pWByic51+ZSkKRL0BJeb8ZWyWqpPlJSWOIlsNE8vQP0I/JU4B8AQqrzM803/ykGMJ2AgY82yA92lEUWocZAm6RGIgWym6RYhgfPgAj4VqIMIqiHkdqinvIV1FYkzFepSdZh9bCplBybkgHbx4enCO0h3x6C8tpSdahMcU2/DWwuTO+Qmdh77XaBjO2BFfwPp2CoP8cRBybIRmrA+6+rii0Djs2Q8hvBG9yCmxxrtBiG8zoSPau5nx0+Z9BjdF1WjP7mU6k8n3jANE33xW5z0LIUwd+Sl5U2KOC8NDAnBh0xpbgclpz/6d9hsTa364UHegdTs9J9je69GACUK5mU2RZWTB6XjrB5YVCZ0THubzOwg7+EoqGoo0ezMx/XiFCuVDPNYbo+pJgPcm60HBUCjq76gPWgdJ/tM7CcmgyKw1GOXUW9nXpwTLF+abOOCyEUO6yA/Yv7BuoNTSRmgnaQQAAAABJRU5ErkJggg==">
+                                    </span>
+                                    <span class="nav__name m-2">User list</span>
+                                </a>--%>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="nav__link nav__logout text-dark">
+                        <asp:LinkButton ID="LinkButton1" CausesValidation="false" class="nav__name nav-link text-dark" OnClick="LinkButton1_Click" runat="server">
+                          <span style="width:18px; height: 18px;">
+                               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA1ElEQVR4nGNgGGygZNqR/9TEDKRYfOjFf6rgUYtHg5pqiat17Y2BSVx+VVv/t6xBWD5hy036WRzdfuB/+4abYP7BZ//oZ3Hbptf/o9sOwH3OQC+Lu7d/QLGcgZ4WI1seUL29j2SLQQaRimEWwywPbdz7JbBmRy/JFiMbRA5u2/T6f1jT3i8EfU4ri4PqdrTSPagDarbht5QWiSuIkE+paTHMUlBBQpSl1LAY2VK6FiADVmS2Qy0F4Qmb6RTUHRtvofBH21w0C2p0PBrUBIN6QLowtAYAy1mFR/FuQ+8AAAAASUVORK5CYII=">
+                          </span>
+                            Log Out
+                        </asp:LinkButton>
+                    </a>
+                </nav>
+            </div>
+
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+    <script src="assest/activeLink.js"></script>
+</body>
+</html>

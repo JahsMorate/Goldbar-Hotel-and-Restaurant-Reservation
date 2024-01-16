@@ -1,0 +1,1 @@
+﻿delete from DB_AddingTable

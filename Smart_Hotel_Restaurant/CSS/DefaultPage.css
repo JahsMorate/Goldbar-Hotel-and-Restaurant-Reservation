@@ -1,0 +1,60 @@
+﻿
+.navbar .container .navbar-collapse .navbar-nav ul li {
+    color: white;
+}
+
+.jahs-buttoms {
+    background-color: #353b48db;
+}
+
+    .jahs-buttoms .navbar-brand {
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+        .jahs-buttoms .navbar-brand span {
+            color: #1e3799;
+        }
+
+    .jahs-buttoms .container .jas-link ul li a {
+        color: white;
+        font-weight: 400;
+        font-size:14px;
+    }
+
+        .jahs-buttoms .container .jas-link ul li a:hover {
+            color: #fa983a;
+            transition: 0.3s;
+        }
+
+        .jahs-buttoms .container .jas-link ul li a:active {
+            color: #fa983a;
+        }
+
+.full-footer {
+    border-top: 2px solid #d35400;
+    background-color: #e67e22;
+}
+
+.main-color {
+    color: white;
+}
+
+.green-check {
+    color: #27ae60;
+}
+
+.container .row .col-lg-12 .card .card-body center span {
+    font-weight: bold;
+}
+
+.menu-s1 .menu-s1 .menu-s2 {
+    text-decoration: none;
+}
+
+.service-menu .service-text label{
+    font-weight: 500;
+    color: white;
+
+}

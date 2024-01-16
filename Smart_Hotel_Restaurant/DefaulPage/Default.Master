@@ -1,0 +1,239 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.master.cs" Inherits="Smart_Hotel_Restaurant.DefaulPage.Default" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>
+        Goldbar Hotel & Restaurant Reservation
+    </title>
+    <link href="../DesignImages/Icon/LogoOFGOldbar.png" rel="icon" />
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        rel="stylesheet" type="text/css" />
+    <!--This is For Applicable For Mobile Start-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--This is For Applicable For Mobile End-->
+    <link href="../Dash01/assets/css/styles.css" rel="stylesheet" />
+    <link href="../CSS/DefaultPage.css" rel="stylesheet" />
+    <link href="../fontawesome-free-6.2.1-web/css/all.css" rel="stylesheet" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#toggle_pwds").click(function () {
+                $(this).toggleClass("fa-eye fa-eye-slash");
+                var type = $(this).hasClass("fa-eye-slash") ? "text" : "password";
+                $("[id*=ctxtPassword]").attr("type", type);
+            });
+        });
+
+
+    </script>
+   
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+</head>
+<body style="background-color: #353b48;">
+    <form id="form1" runat="server">
+        <div>
+            
+            <nav class="navbar navbar-expand-lg navbar-dark jahs-buttoms" style="background-color: #353b48f5;">
+                <div class="container pt-2 mb-2">
+                    <a class="navbar-brand text-white" href="Homepage.aspx">
+                        <img src="../DesignImages/Icon/LogoOFGOldbar.png" width="50" />
+                        <span style="color: white; font-size: 20px; font-weight: bold;">Goldbar Hotel & Restaurant</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class=" navbar-toggler-icon" style="color: white;"></span>
+                    </button>
+                    <div class="collapse navbar-collapse jas-link" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="Homepage.aspx">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="ViewMenu.aspx" class="nav-link">Our Menu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" data-toggle="modal" data-target="#exampleModal" class="nav-link pr-3">Login</a>
+                            </li>
+                             <li class="nav-item">
+                                <a href="Registration.aspx" class="btn btn-success">Get Started</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><b>Login</b></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div>
+                                    <center>
+                                        <img src="../DesignImages/userlogo.png" width="150" />
+                                    </center>
+                                </div>
+                                <div class="row">
+                                    <hr />
+                                    <div class="col-lg-12 col-md-12 col-sm-12 pt-2 pb-2">
+                                        <label>User Status</label>
+                                        <asp:DropDownList ID="ddlLogin_Status" CssClass="form-control" runat="server">
+                                            <asp:ListItem Text="Select" Value="Please Select Current Status"></asp:ListItem>
+                                            <asp:ListItem Text="User" Value="User"></asp:ListItem>
+                                            <asp:ListItem Text="Administrator" Value="Administrator"></asp:ListItem>
+                                        </asp:DropDownList>
+
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <label>Username</label>
+                                        <div class="form-group">
+                                            <div class="input-group flex-nowrap">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="addon-wrapping">
+                                                        <i class="fa-solid fa-user"></i>
+                                                    </span>
+                                                </div>
+                                                <asp:TextBox ID="txtUser_usernameLogin" CssClass="form-control" placeholder="Enter Username" runat="server" ria-label="Username" aria-describedby="addon-wrapping"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <label>Password</label>
+                                        <div class="form-group">
+                                            <div class="input-group flex-nowrap">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="saddon-wrapping">
+                                                        <i class="fa-solid fa-lock"></i>
+                                                    </span>
+                                                </div>
+                                                <asp:TextBox ID="ctxtPassword" TextMode="Password" CssClass="form-control" placeholder="Enter Password" runat="server" ria-label="Username" aria-describedby="saddon-wrapping" ></asp:TextBox>
+                                                <span class="input-group-text" id="saddon-wrapping1s">
+                                                    <span id="toggle_pwds" class="fa fa-fw fa-eye field_icon" style="cursor: pointer;"></span>
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
+                                        <asp:Button ID="BtnLogin" CssClass="btn btn-primary btn-block" Text="Login" OnClick="BtnLogin_Click" OnClientClick="redirectME(); return false;" runat="server" CausesValidation="false" />
+                                        <div>
+                                            <a href="Registration.aspx">
+                                                <small class="text-muted">New Member? <span class="text-primary">Register Now</span></small>
+                                            </a>
+                                        </div>
+                                        <div class="text-danger pt-1">
+                                            <a href="ForgotPassword.aspx"><span class="text-muted"><small>Forgot Password? <span class="text-primary">Click Here</span></small></span> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+           
+        
+            <div class="full-footer" style="background-color: #353b48db; border-top: 2px solid #d35400; color: white;">
+                <div class="container-fluid  pb-2 pr-5 pl-5">
+                    <div class="row mr-5 ml-5">
+                        <div>
+                            <span style="font-weight: bolder; color: white; font-size: 28px;">Goldbar Hotel & Restaurant in Tandag City</span>
+                        </div>
+                    </div>
+                    <hr style="border-color: white; border-width: 1px;" />
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div>
+                                <span style="font-weight: 400; font-size: 20px;"><b>Address</b></span>
+                            </div>
+                            <div>
+                                <ul class="nav-item" style="list-style: none;">
+                                    <li class="nav-item"><i class="fa-solid fa-map-location-dot pr-1"></i><small>Location Map: 36G2+H6F, Tandag, Surigao del Sur</small> </li>
+                                    <li class="nav-item"><i class="fa-solid fa-location-dot pr-1"></i><small>Location: Bag-ong Lungsod, Tandag city</small> </li>
+                                </ul>
+
+                            </div>
+
+                            <div class="col-8">
+                                <center>
+                                    <div class="embed-responsive embed-responsive-16by9">
+
+                                        <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.860838949814!2d126.1979667757963!3d9.076439988242937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33023718531e17cf%3A0x5ed1dd5c09b01da5!2sGoldbar%20Hotel%20%26%20Restaurant!5e0!3m2!1sen!2sph!4v1673665818172!5m2!1sen!2sph"
+                                            frameborder="0"></iframe>
+                                    </div>
+                                </center>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div>
+                                <span style="font-weight: 400; font-size: 20px;"><b>Contact</b></span>
+                                <ul class="nav-item" style="list-style: none;">
+                                    <li class="nav-item"><i class="fa-solid fa-tty pr-1"></i><small>Telephone No.: 086-211-3175</small> </li>
+                                    <li class="nav-item"><i class="fa-solid fa-phone pr-1"></i><small>Mobile No.: 0963 974 0080</small> </li>
+                                    <li class="nav-item"><i class="fa-solid fa-envelope pr-1"></i><small>Mail: goldbarhotelandrestaurant@gmail.com</small> </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-12">
+                            <span style="font-weight: 400; font-size: 20px;"><b>Opening Hours</b></span><br />
+
+
+                            <ul class="nav-item" style="list-style: none;">
+
+                                <li class="nav-item"><small>Saturday	8 AM–10 PM</small></li>
+                                <li class="nav-item"><small>Sunday	8 AM–10 PM</small></li>
+                                <li class="nav-item"><small>Monday	8 AM–10 PM</small></li>
+
+                                <li class="nav-item"><small>Tuesday	8 AM–10 PM</small></li>
+                                <li class="nav-item"><small>Wednesday	8 AM–10 PM</small></li>
+
+                                <li class="nav-item"><small>Thursday	8 AM–10 PM</small></li>
+                                <li class="nav-item"><small>Friday	8 AM–10 PM</small></li>
+
+                            </ul>
+                        </div>
+                        <div class="col-lg-1 col-md-6 col-sm-12">
+                            <span style="font-weight: 400; font-size: 20px;"><b>Our Services</b></span><br />
+                           
+
+                                <small>Dine-in</small><br />
+                                <small>Room Reservation</small>
+                              <small>Table Reservation</small>
+                            
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <span style="font-weight: 400; font-size: 20px;"><b>Follow Us : </b></span>
+                            <br />
+                            <a href="https://www.facebook.com/profile.php?id=203983499635757&paipv=0&eav=AfaUmH4GzuZoKjD8hZC88H_Cya4EJ4SnHnFJHuO06UaRq3K8HiksBbHvu4kn6hbIBo4&_rdr" target="_blank" class="text-white nav-link;"><i class="fa-brands fa-facebook pr-1"></i><small>Goldbar restaurant. Tandag, Surigao del Sur</small></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <script src="../Dash01/assets/js/main.js"></script>
+</body>
+</html>
